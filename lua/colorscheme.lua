@@ -49,4 +49,4 @@ local dark_setup = {
 c.setup(dark_setup)
 
 
-vim.cmd.colorscheme "catppuccin"
+-- vim.cmd.colorscheme "catppuccin"
