@@ -10,6 +10,7 @@ vim.cmd [[packadd packer.nvim]]
 
 packer.startup(function(use)
     use 'wbthomason/packer.nvim'
+    use 'kyazdani42/nvim-web-devicons'
     use 'hoob3rt/lualine.nvim' -- Statusline
     use 'L3MON4D3/LuaSnip' --Snippet
     use 'neovim/nvim-lspconfig' -- LSP

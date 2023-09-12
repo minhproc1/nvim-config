@@ -1,5 +1,6 @@
 local status, telescope = pcall(require, 'telescope')
 
+
 if (not status) then return end
 
 local actions = require('telescope.actions')
@@ -51,3 +52,4 @@ vim.keymap.set('n', ';t', '<cmd>lua require("telescope.builtin").help_tags()<cr>
 vim.keymap.set('n', ';;', '<cmd>lua require("telescope.builtin").resume()<cr>', opts)
 vim.keymap.set('n', ';e', '<cmd>lua require("telescope.builtin").diagnostics()<cr>', opts)
 vim.keymap.set('n', 'sf', '<cmd>lua require("telescope").extensions.file_browser.file_browser({ path = "%:p:h", cwd = telescope_buffer_dir(), respect_git_ignore = false, hidden = true, grouped = true, previewer = false, initial_mode = "normal", layout_config = { height = 40 } })<cr>', opts)
+

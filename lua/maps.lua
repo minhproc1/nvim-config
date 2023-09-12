@@ -35,3 +35,20 @@ map.set('v', '<A-j>', ":m '<-2<CR>gv=gv", opts)
 -- Print from yank register on insert mode Ctrl+P
 map.set('i', '<C-v>', '<C-r>0')
 
+-- New tab
+map.set('n', 'te', ':tabedit<Return>', {silent = true})
+
+-- Split window
+map.set('n', 'ss', ':split<Return><C-w>w', {silent = true})
+map.set('n', 'sv', ':vsplit<Return><C-w>w', {silent = true})
+
+-- Move window
+map.set('n', '<Space>', '<C-w>w')
+map.set('', 's<left>', '<C-w>h')
+map.set('', 's<up>', '<C-w>k')
+map.set('', 's<right>', '<C-w>l')
+map.set('', 's<down>', '<C-w>j')
+map.set('', 'sh', '<C-w>h')
+map.set('', 'sk', '<C-w>k')
+map.set('', 'sj', '<C-w>j')
+map.set('', 'sl', '<C-w>l')
