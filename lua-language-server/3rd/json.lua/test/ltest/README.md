@@ -1,3 +1,0 @@
-# ltest
-
-Lua test framework.
