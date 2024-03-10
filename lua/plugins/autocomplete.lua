@@ -25,7 +25,6 @@ return {
       local cmp = require("cmp")
 
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<CR>"] = cmp.config.disable,
         ["<Tab>"] = cmp.mapping.confirm({ select = true }),
         ["<C-j>"] = cmp.mapping(function(fallback) end, { "i", "s" }),
       })
