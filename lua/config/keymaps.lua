@@ -31,9 +31,6 @@ map.set("i", "<S-TAB>", "<C-D>", { noremap = true })
 -- Print from yank register on insert mode Ctrl+P
 map.set("i", "<C-v>", "<C-r>0")
 
--- New tab
-map.set("n", "te", ":tabedit<Return>", { silent = true })
-
 function vim.getVisualSelection()
   vim.cmd('noau normal! "vy"')
   local text = vim.fn.getreg("v")
