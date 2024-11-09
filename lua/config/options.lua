@@ -4,3 +4,6 @@
 local opt = vim.opt
 
 opt.cursorline = false
+opt.wrap = true
+opt.linebreak = true
+opt.breakindent = true
