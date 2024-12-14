@@ -7,3 +7,4 @@ opt.cursorline = false
 opt.wrap = true
 opt.linebreak = true
 opt.breakindent = true
+opt.clipboard = "unnamedplus"
