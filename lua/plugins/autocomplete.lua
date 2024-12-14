@@ -1,33 +1,71 @@
 return {
-  -- Use <tab> for completion and snippets (supertab)
-  -- first: disable default <tab> and <s-tab> behavior in LuaSnip
   {
-    "L3MON4D3/LuaSnip",
-    keys = function()
-      return {}
-    end,
-  },
-  -- then: setup supertab in cmp
-  {
-    "hrsh7th/nvim-cmp",
+    "saghen/blink.cmp",
     dependencies = {
-      "hrsh7th/cmp-emoji",
+      "rafamadriz/friendly-snippets",
+      -- add blink.compat to dependencies
+      {
+        "saghen/blink.compat",
+        optional = true, -- make optional so it's only enabled if any extras need it
+        opts = {},
+        version = not vim.g.lazyvim_blink_main and "*",
+      },
     },
-    ---@param opts cmp.ConfigSchema
-    opts = function(_, opts)
-      local has_words_before = function()
-        unpack = unpack or table.unpack
-        local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-        return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
-      end
+    opts = {
+      appearance = {
+        -- sets the fallback highlight groups to nvim-cmp's highlight groups
+        -- useful for when your theme doesn't support blink.cmp
+        -- will be removed in a future release, assuming themes add support
+        use_nvim_cmp_as_default = true,
+        -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+        -- adjusts spacing to ensure icons are aligned
+        nerd_font_variant = "normal",
+      },
+      completion = {
+        accept = {
+          -- experimental auto-brackets support
+          auto_brackets = {
+            enabled = true,
+          },
+        },
+        menu = {
+          draw = {
+            treesitter = { "lsp" },
+          },
+        },
+        documentation = {
+          auto_show = true,
+          auto_show_delay_ms = 150,
+        },
+        ghost_text = {
+          enabled = vim.g.ai_cmp,
+        },
+      },
 
-      local luasnip = require("luasnip")
-      local cmp = require("cmp")
+      -- experimental signature help support
+      -- signature = { enabled = true },
 
-      opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<Tab>"] = cmp.mapping.confirm({ select = true }),
-        ["<C-j>"] = cmp.mapping(function(fallback) end, { "i", "s" }),
-      })
-    end,
+      sources = {
+        -- adding any nvim-cmp sources here will enable them
+        -- with blink.compat
+        compat = {},
+        default = { "lsp", "path", "snippets", "buffer" },
+        cmdline = {},
+      },
+
+      keymap = {
+        preset = "super-tab",
+        ["<Tab>"] = {
+          function(cmp)
+            if cmp.snippet_active() then
+              return cmp.accept()
+            else
+              return cmp.select_and_accept()
+            end
+          end,
+          "fallback",
+        },
+      },
+    },
   },
 }
