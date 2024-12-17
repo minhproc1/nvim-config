@@ -5,6 +5,8 @@
 local map = vim.keymap
 local opts = { noremap = true, silent = true }
 
+map.set({ "n", "v" }, "<leader>co", "<cmd>TSToolsOrganizeImports<cr>", { desc = "Organize Imports" })
+
 -- do not yank with x
 map.set("n", "x", '"_x')
 
